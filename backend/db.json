@@ -1,0 +1,25 @@
+{
+  "adverts": [
+    {
+      "id": 1,
+      "name": "iPhone 13",
+      "description": "128GB, buen estado",
+      "price": 550,
+      "type": "sell",
+      "photo": "/uploads/iphone13.jpg",
+      "tags": ["mobile", "apple"],
+      "owner": "sara"
+    },
+    {
+      "id": 2,
+      "name": "Compro Switch",
+      "description": "Busco Nintendo Switch barata",
+      "price": 150,
+      "type": "buy",
+      "photo": "",
+      "tags": ["gaming"],
+      "owner": "alex"
+    }
+  ],
+  "users": []
+}

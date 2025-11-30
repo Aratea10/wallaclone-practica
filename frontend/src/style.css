@@ -26,4 +26,26 @@
   .text-wallapop {
     color: #13C1AC;
   }
+
+  .ad-card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200 cursor-pointer;
+  }
+
+  .ad-card:hover {
+    @apply shadow-lg -translate-y-1;
+  }
+
+  .ad-image {
+    @apply w-full h-48 object-cover bg-gray-200;
+  }
+
+  .badge-sell {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold;
+    background-color: #13C1AC;
+    color: white;
+  }
+
+  .badge-buy {
+    @apply inline-block px-3 py-1 rounded-full text-xs font-semibold bg-orange-500 text-white;
+  }
 }

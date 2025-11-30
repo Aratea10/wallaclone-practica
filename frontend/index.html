@@ -1,13 +1,38 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>Wallaclone - Anuncios</title>
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+  <body class="bg-gray-50 min-h-screen">
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-10">
+      <div class="max-w-7x1 mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-gray-800">Wallaclone</h1>
+        <div id="auth-buttons" class="flex gap-3">
+
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <div id="loading-state" class="text-center py-20 hidden">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+        <p class="mt-4 text-gray-600">Cargando anuncios...</p>
+      </div>
+      <div id="error-state" class="text-center py-20 hidden">
+        <p class="text-red-500 text-lg" id="error-text"></p>
+        <button onclick="location.reload()" class="mt-4 px-6 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700">
+          Reintentar
+        </button>
+      </div>
+      <div id="empty-state" class="text-center py-20 hidden">
+        <p class="text-gray-500 text-lg">No hay anuncios disponibles</p>
+        <p class="text-gray-400 mt-2">¡Sé el primero en publicar!</p>
+      </div>
+      <div id="ads-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      </div>
+    </main>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

@@ -1,12 +1,12 @@
 export const client = {
     baseUrl: "http://127.0.0.1:8000",
 
-    async request (path, method = "GET", body = null) {
+    async request(path, method = "GET", body = null) {
         const token = localStorage.getItem("auth_token");
         const headers = { "Content-Type": "application/json" };
 
         if (token) {
-            headers["Authorization"] = `Bearer ${token}`; 
+            headers["Authorization"] = `Bearer ${token}`;
         }
 
         const options = {
@@ -24,10 +24,20 @@ export const client = {
 
         if (!response.ok) {
             throw new Error(data.message || response.statusText);
-
         }
 
-        return data;
+        const links = {};
+        const linkHeader = response.headers.get("Link");
+        if (linkHeader) {
+            linkHeader.split(",").forEach(part => {
+                const section = part.split(";");
+                const url = section[0].replace(/<|>/g, "").trim();
+                const name = section[1].match(/rel="(.+?)"/)[1];
+                links[name] = new URL(url).pathname + new URL(url).search;
+            });
+        }
+
+        return { data, links };
     },
 
     get(path) {
@@ -40,5 +50,9 @@ export const client = {
 
     delete(path) {
         return this.request(path, "DELETE");
+    },
+
+    put(path, body) {
+        return this.request(path, "PUT", body);
     }
 };

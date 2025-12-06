@@ -70,30 +70,34 @@ function renderAds(ads) {
   adsContainer.innerHTML = ads
     .map(
       (ad) => `
-    <div class="ad-card" onclick="window.location.href='/detail.html?id=${ad.id
-        }'">
-      ${ad.photo
+    <div class="ad-card" onclick="window.location.href='/detail.html?id=${
+      ad.id
+    }'">
+      ${
+        ad.photo
           ? `<img src="http://127.0.0.1:8000${ad.photo}" alt="${ad.name}" class="ad-image" />`
           : `<div class="ad-image flex items-center justify-center text-gray-400">Sin imagen</div>`
-        }
+      }
       <div class="p-4">
         <div class="flex justify-between items-start mb-2">
-          <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${ad.name
-        }</h3>
+          <h3 class="font-bold text-lg text-gray-800 line-clamp-1">${
+            ad.name
+          }</h3>
           <span class="${ad.type === "sell" ? "badge-sell" : "badge-buy"}">
             ${ad.type === "sell" ? "Venta" : "Compra"}
           </span>
         </div>
         <p class="text-gray-600 text-sm line-clamp-2 mb-3">${ad.description}</p>
         <p class="text-2xl font-bold" style="color: #13C1AC;">${ad.price}€</p>
-        ${ad.tags
-          ? `<div class="mt-2 flex gap-1 flex-wrap">${ad.tags
-            .map(
-              (tag) =>
-                `<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">#${tag}</span>`
-            )
-            .join("")}</div>`
-          : ""
+        ${
+          ad.tags
+            ? `<div class="mt-2 flex gap-1 flex-wrap">${ad.tags
+                .map(
+                  (tag) =>
+                    `<span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">#${tag}</span>`
+                )
+                .join("")}</div>`
+            : ""
         }
       </div>
     </div>
@@ -210,6 +214,23 @@ nextPageBtn.addEventListener("click", () => {
     loadAds();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+});
+
+document.querySelector(".logo-title").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  searchInput.value = "";
+  searchQuery = "";
+
+  activeTag = null;
+  const checkboxes = tagsFilterContainer.querySelectorAll(".tag-filter");
+  checkboxes.forEach((cb) => (cb.checked = false));
+
+  currentPage = 1;
+
+  loadAds();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 renderAuthButtons();
